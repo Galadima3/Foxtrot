@@ -1,23 +1,18 @@
 mod db;
+mod error;
 mod handlers;
 mod models;
-mod error;
 mod repository;
 mod service;
-
 
 use axum::{
     Router,
     routing::{delete, get, post, put},
 };
 
-use crate::{db::init_db};
-use crate::handlers::user_handlers::{
-    list_users, create_user, get_user, delete_user, update_user,
-};
+use crate::db::init_db;
+use crate::handlers::user_handlers::{create_user, delete_user, get_user, list_users, update_user};
 use sqlx::{Pool, Sqlite};
-
-
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
